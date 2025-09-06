@@ -1,0 +1,6 @@
+@EquityPositionTrackerAPI_HostAddress = http://localhost:5177
+
+GET {{EquityPositionTrackerAPI_HostAddress}}/api/positions/
+Accept: application/json
+
+###
