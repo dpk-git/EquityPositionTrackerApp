@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import './TransactionForm.css';
 
-export default function TransactionForm() {
+export default function TransactionForm({ onSuccess }) {
   const [form, setForm] = useState({
     tradeID: '',
     version: 1,
@@ -31,10 +31,11 @@ export default function TransactionForm() {
       if (res.ok) {
         toast.success('Transaction submitted successfully!');
         setForm({ tradeID: '', version: 1, securityCode: '', quantity: 0, actionType: 'INSERT', buySell: 'BUY' });
+        onSuccess(); // trigger reload
       } else {
         toast.error('Failed to submit transaction.');
       }
-    } catch (err) {
+    } catch {
       toast.error('Server error.');
     } finally {
       setLoading(false);
